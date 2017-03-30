@@ -1,0 +1,32 @@
+<?php
+    /*
+     * Copia este archivo a datos/config.php y elimina el .sample; debe quedar solo "config.php"
+     * Agrega tus datos de configuración
+    */
+
+    //  Ruta donde está alojada la base de datos
+    define("NOMBRE_HOST", "localhost");     
+    //  La base de datos a usar
+    define("BASE_DE_DATOS", "tu_bd");
+    //  El usuario con privilegios de la base de datos
+   	define("USUARIO", "root_example");
+    //  Contraseña para la base de datos 
+   	define("CONTRASENA", "root_password_example");
+    //  Ruta donde la app está siendo depurada en tu equipo, en su mayoría es localhost 
+    define("APP_URL", "http://localhost");
+
+    function app_url() {
+	    if ((strtolower(substr(APP_URL, 0, 7)) == "http://") || (strtolower(substr(APP_URL, 0, 8)) == "https://")) {
+            if (substr(APP_URL, -1) == "/") {
+                return APP_URL;
+            } else {
+                return APP_URL . "/";
+            }
+        } else {
+            if (substr(APP_URL, -1) == "/") {
+                return "http" . (isset($_SERVER['HTTPS']) ? 's' : '') . "://" . APP_URL;
+            } else {
+                return "http" . (isset($_SERVER['HTTPS']) ? 's' : '') . "://" . APP_URL . "/";
+            }
+        }
+    }
